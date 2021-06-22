@@ -12,16 +12,16 @@ class App extends Component {
 		}
 	}
 
-	// componentDidMount() {
-	// 	fetch('http://127.0.0.1:8000/api/graph/')
-	// 		.then(response => response.json())
-	// 		.then(data => {
-	// 			this.setState({
-	// 				nodes: data.nodes,
-	// 				links: data.links
-	// 			})
-	// 		})
-	// }
+	componentDidMount() {
+		fetch('http://127.0.0.1:8000/api/graph/')
+			.then(response => response.json())
+			.then(data => {
+				this.setState({
+					nodes: data.nodes,
+					links: data.links
+				})
+			})
+	}
 
 	render () {
 		return (
