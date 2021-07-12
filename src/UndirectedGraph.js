@@ -90,13 +90,12 @@ function UndirectedGraph({ data }) {
       function fade(opacity1, opacity2) {
         return d => {
           node.style('stroke-opacity', function (o) {
-            const thisOpacity = isConnected(d.path[0].id, o.nodeId) ? 1 : opacity1;
+            const thisOpacity = isConnected(d.target.id, o.nodeId) ? 1 : opacity1;
             this.setAttribute('fill-opacity', thisOpacity);
             return thisOpacity;
           });
 
-          link.style('stroke-opacity', o => (data.nodes[o.source.index].nodeId === d.path[0].id || data.nodes[o.target.index].nodeId === d.path[0].id ? 1 : opacity2));
-
+          link.style('stroke-opacity', o => (nodes[o.source.index].nodeId === d.target.id || nodes[o.target.index].nodeId === d.target.id ? 1 : opacity2));
         };
       }
 
@@ -116,19 +115,19 @@ function UndirectedGraph({ data }) {
 
   // Render svg as a plot area
   return (
-    <svg
-      ref={ref}
-      style={{
-        height: "80%",
-        width: "80%",
-        marginRight: "0px",
-        marginLeft: "0px",
-      }}
-    >
-      <g className="plot-area" />
-      <g className="x-axis" />
-      <g className="y-axis" />
-    </svg>
+      <svg
+        ref={ref}
+        style={{
+          height: "80%",
+          width: "80%",
+          marginRight: "0px",
+          marginLeft: "0px",
+        }}
+      >
+        <g className="plot-area" />
+        <g className="x-axis" />
+        <g className="y-axis" />
+      </svg>
   );
 }
 
