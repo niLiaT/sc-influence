@@ -3,7 +3,7 @@
 import { useD3 } from './hooks/useD3'
 import React from 'react';
 import * as d3 from 'd3';
-// import { svg } from 'd3';
+import './UndirectedGraph.css'
 
 function UndirectedGraph({ data }) {
 
@@ -115,19 +115,21 @@ function UndirectedGraph({ data }) {
 
   // Render svg as a plot area
   return (
+    <div className="wrapper" >
       <svg
         ref={ref}
         style={{
-          height: "80%",
-          width: "80%",
+          height: "100%",
+          width: "auto",
           marginRight: "0px",
           marginLeft: "0px",
         }}
-      >
+        >
         <g className="plot-area" />
         <g className="x-axis" />
         <g className="y-axis" />
       </svg>
+    </div>
   );
 }
 
