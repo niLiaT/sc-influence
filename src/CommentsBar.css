@@ -1,0 +1,16 @@
+.comments-wrapper {
+  overflow: auto;
+  padding: 10px;
+  height: 97%;
+  width: 20%;
+}
+
+.comment {
+  background-color: #3d4452;
+  font-size: 14px;
+  text-align: left;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}

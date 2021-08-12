@@ -1,11 +1,13 @@
 // Model d3 as a component
 
 import { useD3 } from './hooks/useD3'
-import React from 'react';
+import React, { useState }from 'react';
 import * as d3 from 'd3';
-import './UndirectedGraph.css'
+import CommentsBar from './CommentsBar';
+import './UndirectedGraph.css';
 
 function UndirectedGraph({ data }) {
+  const [selectedAccount, setSelect] = useState("")
 
   const ref = useD3(
     (svg) => {
@@ -73,7 +75,8 @@ function UndirectedGraph({ data }) {
         .attr("id", d => d.nodeId)
         .call(drag(simulation))
         .on("mouseover.fade", fade(0.1, 0.1))
-        .on("mouseout.fade", fade(1, 0.7));
+        .on("mouseout.fade", fade(1, 0.7))
+        .on("click", d => setSelect(d.target.id));
         
         node.append("title")
         .text(d => d.nodeId + "\n" + d.group);
@@ -129,6 +132,7 @@ function UndirectedGraph({ data }) {
         <g className="x-axis" />
         <g className="y-axis" />
       </svg>
+      <CommentsBar account={ selectedAccount } ></CommentsBar>
     </div>
   );
 }
