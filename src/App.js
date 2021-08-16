@@ -13,7 +13,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		fetch('http://127.0.0.1:8000/api/graph/')
+		fetch('http://13.125.82.153:8000/api/graph/')
 			.then(response => response.json())
 			.then(data => {
 				this.setState({
