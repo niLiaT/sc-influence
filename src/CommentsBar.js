@@ -13,7 +13,7 @@ function CommentsBar(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: props.account })
     };
-    fetch('http://13.125.82.153:8000/get-data/comments', requestOptions)
+    fetch('https://cogent-dahlia-289109.de.r.appspot.com/get-data/comments', requestOptions)
         .then(response => response.json())
         .then(data => setData({
           id: props.account,
