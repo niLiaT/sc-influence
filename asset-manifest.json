@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/sc-influence/static/css/main.20b5cf90.chunk.css",
-    "main.js": "/sc-influence/static/js/main.dece1faa.chunk.js",
-    "main.js.map": "/sc-influence/static/js/main.dece1faa.chunk.js.map",
+    "main.js": "/sc-influence/static/js/main.55009600.chunk.js",
+    "main.js.map": "/sc-influence/static/js/main.55009600.chunk.js.map",
     "runtime-main.js": "/sc-influence/static/js/runtime-main.d2753c78.js",
     "runtime-main.js.map": "/sc-influence/static/js/runtime-main.d2753c78.js.map",
     "static/js/2.c4222e17.chunk.js": "/sc-influence/static/js/2.c4222e17.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.d2753c78.js",
     "static/js/2.c4222e17.chunk.js",
     "static/css/main.20b5cf90.chunk.css",
-    "static/js/main.dece1faa.chunk.js"
+    "static/js/main.55009600.chunk.js"
   ]
 }
