@@ -13,6 +13,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
+		// fetch('http://127.0.0.1:8000/api/graph/')
 		fetch('https://cogent-dahlia-289109.de.r.appspot.com/api/graph/')
 			.then(response => response.json())
 			.then(data => {

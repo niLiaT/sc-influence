@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import './CommentsBar.css';
 
 function CommentsBar(props) {
@@ -7,21 +7,22 @@ function CommentsBar(props) {
       comments: []
   })
 
-  useEffect(() => {
+  const onAccountChange = useCallback((account) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: props.account })
+      body: JSON.stringify({ id: account })
     };
+    // fetch('http://127.0.0.1:8000/get-data/comments', requestOptions)
     fetch('https://cogent-dahlia-289109.de.r.appspot.com/get-data/comments', requestOptions)
         .then(response => response.json())
         .then(data => setData({
-          id: props.account,
+          id: account,
           comments: data
         }));
-    }, [props.account])
+    }, [])
 
-  console.log(data.comments)
+    props.onAccountChangeRef.current = onAccountChange;
 
   return (
     <div className="comments-wrapper">

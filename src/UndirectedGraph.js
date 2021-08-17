@@ -1,13 +1,13 @@
 // Model d3 as a component
 
 import { useD3 } from './hooks/useD3'
-import React, { useState }from 'react';
+import React, { useState, useRef }from 'react';
 import * as d3 from 'd3';
 import CommentsBar from './CommentsBar';
 import './UndirectedGraph.css';
 
 function UndirectedGraph({ data }) {
-  const [selectedAccount, setSelect] = useState("")
+  const onAccountChangeRef = useRef(null)
 
   const ref = useD3(
     (svg) => {
@@ -39,7 +39,7 @@ function UndirectedGraph({ data }) {
 
       var color = d3.scaleOrdinal()
         .domain([0, 1])
-        .range(["green", "red"])
+        .range(["#56b6c2", "red"])
 
       const height = 1080
       const width = 1920
@@ -48,10 +48,11 @@ function UndirectedGraph({ data }) {
       const nodes = data.nodes.map(d => Object.create(d));
 
       const simulation = d3.forceSimulation(nodes)
-        .force("link", d3.forceLink(links).id(d => d.nodeId).strength(d => d.value * 0.04))
-        .force("charge", d3.forceManyBody().strength(-100))
-        .force("x", d3.forceX())
-        .force("y", d3.forceY());
+        .force("link", d3.forceLink(links).id(d => d.nodeId).strength(d => d.value * 0.06))
+        .force("charge", d3.forceManyBody().strength(-5.3))
+        .force('center', d3.forceCenter(0, 0));
+        // .force("x", d3.forceX())
+        // .force("y", d3.forceY());
 
       svg.attr("viewBox", [-width / 2, -height / 2, width, height]);
 
@@ -75,11 +76,12 @@ function UndirectedGraph({ data }) {
         .attr("id", d => d.nodeId)
         .call(drag(simulation))
         .on("mouseover.fade", fade(0.1, 0.1))
-        .on("mouseout.fade", fade(1, 0.7))
-        .on("click", d => setSelect(d.target.id));
+        // .on("mouseout.fade", fade(1, 0.7))
+        .on("mouseover", function() {d3.select(this).style("cursor", "pointer")})
+        .on("click", d => {if (onAccountChangeRef.current) onAccountChangeRef.current(d.target.id)});
         
         node.append("title")
-        .text(d => d.nodeId + "\n" + d.group);
+        .text(d => d.nodeId);
 
       const linkedById = {};
       data.links.forEach(d => {
@@ -132,7 +134,7 @@ function UndirectedGraph({ data }) {
         <g className="x-axis" />
         <g className="y-axis" />
       </svg>
-      <CommentsBar account={ selectedAccount } ></CommentsBar>
+      <CommentsBar onAccountChangeRef={ onAccountChangeRef } ></CommentsBar>
     </div>
   );
 }
