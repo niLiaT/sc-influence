@@ -14,7 +14,7 @@ function CommentsBar(props) {
       body: JSON.stringify({ id: account })
     };
     // fetch('http://127.0.0.1:8000/get-data/comments', requestOptions)
-    fetch('https://cogent-dahlia-289109.de.r.appspot.com/get-data/comments', requestOptions)
+    fetch('https://sc-backend-333008.de.r.appspot.com/get-data/comments', requestOptions)
         .then(response => response.json())
         .then(data => setData({
           id: account,
